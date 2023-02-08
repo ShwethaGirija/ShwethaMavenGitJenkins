@@ -4,8 +4,21 @@
   <artifactId>TestNGProj</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>TestNGProj</name>
+  <properties>
+	  <browser>$browser</browser>
+	  <url>$url</url>
+	  
+  </properties>
   
   <build>
+	  
+	  <testResources>
+        <testResource>
+            <directory>src/test/resources</directory>
+            <filtering>true</filtering>
+        </testResource>
+    </testResources>
+    
 	  <plugins>
 		   <plugin>
     <groupId>org.apache.maven.plugins</groupId>

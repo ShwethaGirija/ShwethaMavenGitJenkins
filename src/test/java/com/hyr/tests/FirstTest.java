@@ -20,6 +20,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -40,6 +41,7 @@ public class FirstTest {
 	@BeforeSuite
 	public void initializereport()
 	{
+		
 		 extentreports = new ExtentReports();
 		ExtentSparkReporter sparkreport = new ExtentSparkReporter("test.html");
 		
@@ -101,11 +103,21 @@ public class FirstTest {
 	
 	SoftAssert softassert = new SoftAssert();
 	@Test
-	public void TestGoogle()
+	public void TestGoogle() throws IOException
 	{
 		WebDriverManager.chromedriver().setup();
 		
 		  driver = new ChromeDriver();
+		  
+		  Properties props = new Properties();
+		  props.load(FirstTest.class.getClassLoader().getResourceAsStream("jenkins.properties"));
+		  String browser = props.getProperty("browser");
+		  String url = props.getProperty("url");
+		  
+		  
+		  System.out.println("BROWSER NAME IS "+browser);
+		  System.out.println("URL IS "+url);
+		  
 		
 		driver.get("https://www.google.com");
 		
